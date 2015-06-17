@@ -26,20 +26,30 @@ normalFormula::normalFormula(std::ifstream& is)
 	}
 }
 
-bool normalFormula::is2NF() const
+bool normalFormula::is2NF()
 {
+	return analize2NF(to2NF.empty());
+}
+
+bool normalFormula::analize2NF(bool add_action)
+{
+	bool ret = true;
 	for (auto each_func : schema)
 	{
 		auto splice = std::find_if(each_func.second->begin(), each_func.second->end(), more_than_one_attr());
 		for (auto i = each_func.second->begin(); i != splice; i++)
 			for (auto j = splice; j != each_func.second->end(); j++)
 				if (j->find(*i) != std::string::npos)
-					return false;
+				{
+					ret = false;
+					if (add_action)
+						to2NF.push_back(decomposite_action(DELETE, each_func.first, *j));
+				}
 	}
-	return true;
+	return ret;
 }
 
-bool normalFormula::is3NF() const
+bool normalFormula::is3NF()
 {
 	if (!is2NF())
 		return false;
@@ -48,6 +58,19 @@ bool normalFormula::is3NF() const
 		if (find_transitive_dependencies(each_func.first))
 			return false;
 	return true;
+}
+
+void normalFormula::decompositeTo2NF()
+{
+	for (auto item : to2NF)
+	{
+		if (std::get<0>(item) == DELETE)
+		{
+			auto& attr_list = *schema[std::get<1>(item)];
+			attr_list.erase(std::find(attr_list.begin(), attr_list.end(), std::get<2>(item)));
+		}
+	}
+	to2NF.clear();
 }
 
 inline

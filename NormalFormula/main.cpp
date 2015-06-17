@@ -12,5 +12,9 @@ int main(void)
 
 	auto ret3 = nf.is3NF();
 
+	nf.decompositeTo2NF();
+	ret2 = nf.is2NF();
+	ret3 = nf.is3NF();
+
 	return 0;
 }
