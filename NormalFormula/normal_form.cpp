@@ -1,10 +1,10 @@
-#include "normalFormula.h"
+#include "normal_form.h"
 
 #include <algorithm>
 #include <set>
 #include <queue>
 
-normalFormula::normalFormula(std::ifstream& is)
+normal_form::normal_form(std::ifstream& is)
 {
 	std::string line;
 	while (is >> line)
@@ -26,12 +26,12 @@ normalFormula::normalFormula(std::ifstream& is)
 	}
 }
 
-bool normalFormula::is2NF()
+bool normal_form::is2NF()
 {
 	return analize2NF(to2NF.empty());
 }
 
-bool normalFormula::analize2NF(bool add_action)
+bool normal_form::analize2NF(bool add_action)
 {
 	bool ret = true;
 	for (auto each_func : schema)
@@ -49,7 +49,7 @@ bool normalFormula::analize2NF(bool add_action)
 	return ret;
 }
 
-bool normalFormula::is3NF()
+bool normal_form::is3NF()
 {
 	if (!is2NF())
 		return false;
@@ -60,7 +60,7 @@ bool normalFormula::is3NF()
 	return true;
 }
 
-void normalFormula::decompositeTo2NF()
+void normal_form::decompositeTo2NF()
 {
 	for (auto item : to2NF)
 	{
@@ -74,14 +74,14 @@ void normalFormula::decompositeTo2NF()
 }
 
 inline
-void normalFormula::add_if_not_exist(const std::string& attr)
+void normal_form::add_if_not_exist(const std::string& attr)
 {
 	if (schema.find(attr) == schema.end())
 		schema[attr] = std::make_shared<attrList_type>();
 }
 
 inline
-void normalFormula::insert_in_right_place(const std::string& K, const std::string& U)
+void normal_form::insert_in_right_place(const std::string& K, const std::string& U)
 {
 	if (K.find(',') != std::string::npos)
 		schema[U]->insert(std::find_if(schema[U]->begin(), schema[U]->end(), more_than_one_attr()), K);
@@ -89,7 +89,7 @@ void normalFormula::insert_in_right_place(const std::string& K, const std::strin
 		schema[U]->push_front(K);
 }
 
-bool normalFormula::find_transitive_dependencies(const std::string& start) const
+bool normal_form::find_transitive_dependencies(const std::string& start) const
 {
 	std::set<std::string> marked;
 

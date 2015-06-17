@@ -1,5 +1,5 @@
-#ifndef NORMALFORMULA_H
-#define NORMALFORMULA_H
+#ifndef NORMAL_FORM_H
+#define NORMAL_FORM_H
 
 #include <fstream>
 #include <map>
@@ -11,13 +11,13 @@
 #include <vector>
 #include <tuple>
 
-class normalFormula
+class normal_form
 {
 public:
-	normalFormula() = default;
-	normalFormula(std::ifstream&);
+	normal_form() = default;
+	normal_form(std::ifstream&);
 
-	~normalFormula() = default;
+	~normal_form() = default;
 
 	bool is2NF();
 	bool is3NF();
@@ -55,4 +55,4 @@ struct more_than_one_attr : public std::unary_function < std::string, bool >
 	}
 };
 
-#endif
+#endif /* NORMAL_FORM_H */

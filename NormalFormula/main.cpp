@@ -1,4 +1,4 @@
-#include "normalFormula.h"
+#include "normal_form.h"
 
 int main(void)
 {
@@ -6,7 +6,7 @@ int main(void)
 	if (!infile)
 		exit(-1);
 
-	normalFormula nf(infile);
+	normal_form nf(infile);
 
 	auto ret2 = nf.is2NF();
 

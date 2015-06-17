@@ -11,15 +11,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="normalFormula.h" />
+    <ClInclude Include="normal_form.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="normalFormula.cpp" />
+    <ClCompile Include="normal_form.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{049A0369-3639-4D9C-B3A7-E059FD485203}</ProjectGuid>
     <RootNamespace>NormalFormula</RootNamespace>
+    <ProjectName>NormalForm</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
