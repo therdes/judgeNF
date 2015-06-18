@@ -18,10 +18,18 @@ private:
 
 public:
 	using adj_list_iter_pair = std::pair < std::list<std::string>::iterator, std::list<std::string>::iterator > ;
+
 	using key_type = adj_list_type::key_type;
 	using mapped_type = adj_list_type::mapped_type;
+	using value_type = adj_list_type::value_type;
+	
+	using key_compare = adj_list_type::key_compare;
+	using value_compare = adj_list_type::value_compare;
+
 	using const_iterator = adj_list_type::const_iterator;
 	using iterator = adj_list_type::iterator;
+
+	using size_type = adj_list_type::size_type;
 
 public:
 	schema_graph() = default;
@@ -30,14 +38,20 @@ public:
 	void add_edge(const std::string&);
 	adj_list_iter_pair adj(const std::string&);
 
-	mapped_type operator[](const key_type&);
-	iterator find(const key_type&);
-
 	iterator begin();
-	const_iterator cbegin() const;
+	const_iterator begin() const;
 
 	iterator end();
-	const_iterator cend() const;
+	const_iterator end() const;
+
+	bool empty() const;
+	size_type size() const;
+
+	mapped_type& operator[](const key_type&);
+	mapped_type& operator[](key_type&&);
+
+	iterator find(const key_type&);
+	const_iterator find(const key_type&) const;
 
 private:
 	adj_list_type adj_list;

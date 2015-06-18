@@ -16,6 +16,8 @@ using std::set_intersection;
 using std::shared_ptr;
 using std::make_shared;
 using std::inserter;
+using std::get;
+using std::find;
 
 normal_form::normal_form(ifstream& is)
 {
@@ -32,7 +34,7 @@ bool normal_form::analize2NF(bool add_action)
 	bool ret = true;
 	for (auto each_func : *schema)
 	{
-		auto splice = std::find_if(each_func.second->begin(), each_func.second->end(), more_than_one_attr());
+		auto splice = find_if(each_func.second->begin(), each_func.second->end(), more_than_one_attr());
 		for (auto i = each_func.second->begin(); i != splice; i++)
 			for (auto j = splice; j != each_func.second->end(); j++)
 				if (j->find(*i) != string::npos)
@@ -60,11 +62,10 @@ void normal_form::decompositeTo2NF()
 {
 	for (auto item : to2NF)
 	{
-		if (std::get<0>(item) == DELETE)
+		if (get<0>(item) == DELETE)
 		{
-			//auto& attr_list = *(*schema)[std::get<1>(item)];
-			auto& attr_list = *schema->operator[](std::get<1>(item));
-			attr_list.erase(std::find(attr_list.begin(), attr_list.end(), std::get<2>(item)));
+			auto attr_list = schema->operator[](get<1>(item));
+			attr_list->erase(find(attr_list->begin(), attr_list->end(), get<2>(item)));
 		}
 	}
 	to2NF.clear();

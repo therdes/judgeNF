@@ -38,18 +38,6 @@ schema_graph::adj_list_iter_pair schema_graph::adj(const string& attr)
 }
 
 inline
-schema_graph::mapped_type schema_graph::operator[](const schema_graph::key_type& key)
-{
-	return adj_list[key];
-}
-
-inline
-schema_graph::iterator schema_graph::find(const schema_graph::key_type& key)
-{
-	return adj_list.find(key);
-}
-
-inline
 void schema_graph::add_if_not_exist(const string& attr)
 {
 	if (adj_list.find(attr) == adj_list.end())
@@ -71,9 +59,9 @@ schema_graph::iterator schema_graph::begin()
 	return adj_list.begin();
 }
 inline
-schema_graph::const_iterator schema_graph::cbegin() const
+schema_graph::const_iterator schema_graph::begin() const
 {
-	return adj_list.cbegin();
+	return adj_list.begin();
 }
 
 inline
@@ -82,7 +70,41 @@ schema_graph::iterator schema_graph::end()
 	return adj_list.end();
 }
 inline
-schema_graph::const_iterator schema_graph::cend() const
+schema_graph::const_iterator schema_graph::end() const
 {
-	return adj_list.cend();
+	return adj_list.end();
+}
+
+inline
+bool schema_graph::empty() const
+{
+	return adj_list.empty();
+}
+
+inline
+schema_graph::size_type schema_graph::size() const
+{
+	return adj_list.size();
+}
+
+inline
+schema_graph::mapped_type& schema_graph::operator[](const schema_graph::key_type& key)
+{
+	return adj_list[key];
+}
+inline
+schema_graph::mapped_type& schema_graph::operator[](schema_graph::key_type&& key)
+{
+	return adj_list[key];
+}
+
+inline
+schema_graph::iterator schema_graph::find(const schema_graph::key_type& key)
+{
+	return adj_list.find(key);
+}
+inline
+schema_graph::const_iterator schema_graph::find(const schema_graph::key_type& key) const
+{
+	return adj_list.find(key);
 }
