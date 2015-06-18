@@ -1,13 +1,7 @@
 #ifndef NORMAL_FORM_H
 #define NORMAL_FORM_H
 
-#include <fstream>
-#include <map>
-#include <string>
-#include <list>
-#include <utility>
-#include <memory>
-#include <functional>
+#include "schema_graph.h"
 #include <vector>
 #include <tuple>
 
@@ -28,13 +22,11 @@ public:
 	void decompositeToBCNF();
 
 private:
-	using attrList_type = std::list < std::string > ;
-	using schema_type = std::map < std::string, std::shared_ptr<attrList_type> > ;
 	using decomposite_action = std::tuple < int, std::string, std::string > ;
 
 	const int DELETE = 1;
 
-	schema_type schema;
+	std::shared_ptr<schema_graph> schema;
 
 	std::vector<decomposite_action> to2NF;
 
@@ -43,16 +35,6 @@ private:
 	void add_if_not_exist(const std::string&);
 	void insert_in_right_place(const std::string&, const std::string&);
 	bool find_transitive_dependencies(const std::string&) const;
-};
-
-struct more_than_one_attr : public std::unary_function < std::string, bool >
-{
-	bool operator()(const std::string& str) const
-	{
-		if (str.find(',') != std::string::npos)
-			return true;
-		return false;
-	}
 };
 
 #endif /* NORMAL_FORM_H */

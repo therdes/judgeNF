@@ -1,5 +1,7 @@
 #include "normal_form.h"
 
+#include <iostream>
+
 int main(void)
 {
 	std::ifstream infile("data.txt");

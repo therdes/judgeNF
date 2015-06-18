@@ -12,10 +12,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="normal_form.h" />
+    <ClInclude Include="schema_graph.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="normal_form.cpp" />
+    <ClCompile Include="schema_graph.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{049A0369-3639-4D9C-B3A7-E059FD485203}</ProjectGuid>
