@@ -4,6 +4,7 @@
 #include <set>
 #include <queue>
 #include <iterator>
+#include <map>
 
 using std::vector;
 using std::ifstream;
@@ -64,7 +65,7 @@ void normal_form::decompositeTo2NF()
 	{
 		if (get<0>(item) == DELETE)
 		{
-			auto attr_list = schema->operator[](get<1>(item));
+			auto attr_list = (*schema)[get<1>(item)];
 			attr_list->erase(find(attr_list->begin(), attr_list->end(), get<2>(item)));
 		}
 	}

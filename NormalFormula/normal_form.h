@@ -2,8 +2,8 @@
 #define NORMAL_FORM_H
 
 #include "schema_graph.h"
-#include <vector>
 #include <tuple>
+#include <memory>
 
 class normal_form
 {
