@@ -2,23 +2,14 @@
 
 #include <set>
 #include <queue>
-#include <iterator>
-#include <map>
 #include <functional>
 
-using std::vector;
 using std::ifstream;
 using std::string;
 using std::set;
 using std::queue;
-using std::ostream;
-using std::map;
-using std::set_intersection;
-using std::shared_ptr;
 using std::make_shared;
-using std::inserter;
-using std::get;
-using std::find;
+using std::find_if;
 using std::unary_function;
 using std::not1;
 
@@ -48,7 +39,7 @@ bool normal_form::analize2NF() const
 	for (auto vertex : schema->all_vertex())
 	{
 		auto vertex_list = schema->reverse_adj_list(vertex, not1(more_than_one_attr()));
-		auto splice = std::find_if(vertex_list.begin(), vertex_list.end(), more_than_one_attr());
+		auto splice = find_if(vertex_list.begin(), vertex_list.end(), more_than_one_attr());
 		for (auto one_attr = vertex_list.begin(); one_attr != splice; one_attr++)
 		{
 			for (auto more_attr = splice; more_attr != vertex_list.end(); more_attr++)
