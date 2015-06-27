@@ -11,15 +11,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="normal_form.h" />
-    <ClInclude Include="schema_graph.h" />
-    <ClInclude Include="schema_graph_dfs.h" />
+    <ClInclude Include="normal_form.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="orthogonal_list.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="normal_form.cpp" />
-    <ClCompile Include="schema_graph.cpp" />
-    <ClCompile Include="schema_graph_dfs.cpp" />
+    <ClCompile Include="normal_form.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{049A0369-3639-4D9C-B3A7-E059FD485203}</ProjectGuid>

@@ -1,7 +1,7 @@
 #ifndef NORMAL_FORM_H
 #define NORMAL_FORM_H
 
-#include "schema_graph.h"
+#include "orthogonal_list.h"
 #include <tuple>
 #include <memory>
 
@@ -13,7 +13,7 @@ public:
 
 	~normal_form() = default;
 
-	bool is2NF();
+	bool is2NF() const;
 	bool is3NF();
 	bool isBCNF() const;
 
@@ -26,11 +26,11 @@ private:
 
 	const int DELETE = 1;
 
-	std::shared_ptr<schema_graph> schema;
+	std::shared_ptr<orthogonal_list<std::string>> schema;
 
 	std::vector<decomposite_action> to2NF;
 
-	bool analize2NF(bool);
+	bool analize2NF() const;
 
 	void add_if_not_exist(const std::string&);
 	void insert_in_right_place(const std::string&, const std::string&);

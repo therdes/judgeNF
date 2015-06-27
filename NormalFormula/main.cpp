@@ -1,22 +1,14 @@
-#include "normal_form.h"
+#include "orthogonal_list.h"
 
 #include <iostream>
 
 int main(void)
 {
-	std::ifstream infile("data.txt");
-	if (!infile)
-		exit(-1);
+	orthogonal_list<std::string> graph;
 
-	normal_form nf(infile);
+	graph.add_edge("from", "to");
 
-	auto ret2 = nf.is2NF();
-
-	auto ret3 = nf.is3NF();
-
-	nf.decompositeTo2NF();
-	ret2 = nf.is2NF();
-	ret3 = nf.is3NF();
+	auto ret = graph.adj_list("from");
 
 	return 0;
 }

@@ -21,21 +21,12 @@
     <ClCompile Include="normal_form.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="schema_graph.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="schema_graph_dfs.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="normal_form.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="schema_graph.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="schema_graph_dfs.h">
+    <ClInclude Include="orthogonal_list.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
