@@ -1,14 +1,19 @@
-#include "orthogonal_list.h"
+#include "normal_form.h"
 
 #include <iostream>
+#include <fstream>
+using std::ifstream;
+using std::ios;
 
 int main(void)
 {
-	orthogonal_list<std::string> graph;
+	ifstream infile("data.txt", ios::in);
+	if (!infile)
+		exit(-1);
 
-	graph.add_edge("from", "to");
-
-	auto ret = graph.adj_list("from");
+	normal_form schema(infile);
+	auto ret2 = schema.is2NF();
+	auto ret3 = schema.is3NF();
 
 	return 0;
 }

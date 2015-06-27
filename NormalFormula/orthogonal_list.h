@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <iterator>
 
 template<typename VertexType>
 class list_node
@@ -106,8 +107,8 @@ public:
 private:
 	vertex_list_type vertex_list;
 
-	int vertexes;
-	int edges;
+	int vertexes = 0;
+	int edges = 0;
 
 	void push_front(const VertexType&, list_node<VertexType>*, bool);
 
@@ -119,9 +120,11 @@ private:
 };
 
 template<typename VertexType>
-orthogonal_list<VertexType>::orthogonal_list(std::ifstream)
+orthogonal_list<VertexType>::orthogonal_list(std::ifstream& is)
 {
-
+	std::istream_iterator<std::string> is_iter(is), eos;
+	while (is_iter != eos)
+		add_edge(*is_iter++);
 }
 
 template<typename VertexType>
@@ -137,7 +140,18 @@ orthogonal_list<VertexType>::~orthogonal_list()
 template<typename VertexType>
 void orthogonal_list<VertexType>::add_edge(const std::string& func_dependency)
 {
+	auto index = func_dependency.find_first_of("->");
+	std::string K = func_dependency.substr(0, index);
+	std::string U = func_dependency.substr(index + 2);
 
+	std::string::size_type i;
+	while ((i = U.find_first_of(',')) != std::string::npos)
+	{
+		std::string attr = U.substr(0, i);
+		add_edge(K, attr);
+		U = U.substr(i + 1);
+	}
+	add_edge(K, U);
 }
 
 template<typename VertexType>
@@ -191,7 +205,8 @@ template<typename VertexType>
 const std::vector<VertexType>
 orthogonal_list<VertexType>::all_vertex()
 {
-	std::vector<VertexType> ret(vertexes);
+	std::vector<VertexType> ret;
+	ret.reserve(vertexes);
 	for (auto item : vertex_list)
 		ret.push_back(item.first);
 	return ret;

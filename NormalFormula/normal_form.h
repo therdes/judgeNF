@@ -14,7 +14,7 @@ public:
 	~normal_form() = default;
 
 	bool is2NF() const;
-	bool is3NF();
+	bool is3NF() const;
 	bool isBCNF() const;
 
 	void decompositeTo2NF();
@@ -31,9 +31,6 @@ private:
 	std::vector<decomposite_action> to2NF;
 
 	bool analize2NF() const;
-
-	void add_if_not_exist(const std::string&);
-	void insert_in_right_place(const std::string&, const std::string&);
 	bool find_transitive_dependencies(const std::string&) const;
 };
 
