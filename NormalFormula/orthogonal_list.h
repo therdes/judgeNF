@@ -81,8 +81,8 @@ template<typename VertexType>
 class orthogonal_list
 {
 private:
-	using edge_ptr_pair = std::pair < list_node<VertexType>*, list_node<VertexType>* > ;
-	using vertex_list_type = std::map < VertexType, edge_ptr_pair > ;
+	using edge_ptr_pair = std::pair < list_node<VertexType>*, list_node<VertexType>* >;
+	using vertex_list_type = std::map < VertexType, edge_ptr_pair >;
 
 public:
 	orthogonal_list() = default;
